@@ -1,22 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
     <title>A Story for You</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e6f3ff, #ffe6f0);
+            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; 
+            font-family: 'Georgia', serif; color: #333; overflow: hidden;
+        }
+        /* Petal Animation */
+        .petal {
+            position: absolute; top: -10%; font-size: 20px;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
 </head>
-<body style="background: linear-gradient(135deg, #e6f3ff, #ffe6f0) !important; height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; font-family: 'Georgia', serif; color: #333;">
+<body>
 
-    <div style="width: 320px; padding: 40px; background: rgba(255, 255, 255, 0.85); border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 2px solid #ffcce6;">
-        <div style="font-size: 40px; margin-bottom: 10px;">🌸 🌼 🌸</div>
-        
+    <div style="width: 320px; padding: 40px; background: rgba(255, 255, 255, 0.85); border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 2px solid #ffcce6; z-index: 10;">
         <h1 style="color: #d63384; margin: 10px 0; font-style: italic;">Happy 8th!</h1>
-        <p style="color: #4a90e2; font-weight: bold;">A special story, blooming for you.</p>
-        
-        <button onclick="checkPassword()" style="margin-top: 25px; padding: 12px 30px; background: #4a90e2; border: none; cursor: pointer; border-radius: 25px; color: white; font-weight: bold; font-family: 'Georgia', serif; font-size: 16px; transition: background 0.3s;">Unlock Story</button>
+        <p style="color: #4a90e2; font-weight: bold;">The petals are falling just for you.</p>
+        <button onclick="checkPassword()" style="margin-top: 25px; padding: 12px 30px; background: #4a90e2; border: none; cursor: pointer; border-radius: 25px; color: white; font-weight: bold; font-family: 'Georgia', serif; font-size: 16px;">Unlock Story</button>
     </div>
 
     <script>
+        // Falling Petals Logic
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌸';
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            petal.style.opacity = Math.random();
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 10000);
+        }
+        setInterval(createPetal, 500);
+
         function checkPassword() {
             const code = prompt("Enter the secret code:");
             if (code === "1234") {
