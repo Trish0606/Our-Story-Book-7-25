@@ -2,39 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
     <title>Our Story</title>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #87CEEB, #ffffff);
-            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; 
-            font-family: 'Georgia', serif;
-        }
-        .page {
-            width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; text-align: center;
-        }
-        .page.active { display: block; }
-        button { margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; }
-    </style>
 </head>
-<body>
+<body style="background: linear-gradient(to bottom, #87CEEB, #ffffff) !important; height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; font-family: 'Georgia', serif; color: #333;">
 
-    <div id="page1" class="page active">
-        <h2>Our Journey</h2>
-        <p>This is the first page of our story.</p>
-        <button onclick="nextPage()">Next</button>
+    <div id="page1" style="width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
+        <h2 style="color: #ffb7c5;">Our Journey</h2>
+        <p style="color: #555; line-height: 1.6;">This is the first page of our story.</p>
+        <button onclick="nextPage()" style="margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; cursor: pointer; font-family: 'Georgia', serif;">Next</button>
     </div>
 
-    <div id="page2" class="page">
-        <h2>Next Chapter</h2>
-        <p>I am so glad we get to write this story together.</p>
-        <button onclick="window.location.href='index.html'">Back Home</button>
+    <div id="page2" style="display: none; width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
+        <h2 style="color: #ffb7c5;">Next Chapter</h2>
+        <p style="color: #555; line-height: 1.6;">I am so glad we get to write this story together.</p>
+        <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; cursor: pointer; font-family: 'Georgia', serif;">Back Home</button>
     </div>
 
     <script>
         function nextPage() {
-            document.getElementById('page1').classList.remove('active');
-            document.getElementById('page2').classList.add('active');
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
         }
     </script>
 </body>
