@@ -4,25 +4,50 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
     <title>Our Story</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e6f3ff, #ffe6f0);
+            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; 
+            font-family: 'Georgia', serif; perspective: 1000px; /* Essential for 3D effect */
+        }
+        .book-container {
+            width: 350px; height: 450px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.8s ease-in-out;
+        }
+        /* This is the class that triggers the flip */
+        .flipped { transform: rotateY(-180deg); }
+
+        .page {
+            position: absolute; width: 100%; height: 100%;
+            background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;
+            backface-visibility: hidden; /* Hides the back of the page during flip */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .back-page { transform: rotateY(180deg); background: #fffaf0; }
+        
+        button { margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; cursor: pointer; }
+    </style>
 </head>
-<body style="background: linear-gradient(to bottom, #87CEEB, #ffffff) !important; height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; font-family: 'Georgia', serif; color: #333;">
+<body>
 
-    <div id="page1" style="width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
-        <h2 style="color: #ffb7c5;">Our Journey</h2>
-        <p style="color: #555; line-height: 1.6;">This is the first page of our story.</p>
-        <button onclick="nextPage()" style="margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; cursor: pointer; font-family: 'Georgia', serif;">Next</button>
-    </div>
+    <div class="book-container" id="book">
+        <div class="page">
+            <h2 style="color: #d63384;">Our Journey</h2>
+            <p>This is the first page of our story.</p>
+            <button onclick="flipPage()">Next Page</button>
+        </div>
 
-    <div id="page2" style="display: none; width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
-        <h2 style="color: #ffb7c5;">Next Chapter</h2>
-        <p style="color: #555; line-height: 1.6;">I am so glad we get to write this story together.</p>
-        <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; cursor: pointer; font-family: 'Georgia', serif;">Back Home</button>
+        <div class="page back-page">
+            <h2 style="color: #d63384;">Chapter 2</h2>
+            <p>I am so glad we get to write this story together.</p>
+            <button onclick="window.location.href='index.html'">Back Home</button>
+        </div>
     </div>
 
     <script>
-        function nextPage() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
+        function flipPage() {
+            document.getElementById('book').classList.add('flipped');
         }
     </script>
 </body>
