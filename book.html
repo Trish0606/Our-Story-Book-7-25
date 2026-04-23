@@ -2,67 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our Memory Book</title>
+    <title>Our Story</title>
     <style>
         body {
             background: linear-gradient(to bottom, #87CEEB, #ffffff);
-            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; font-family: 'Georgia', serif; overflow: hidden;
+            height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center; 
+            font-family: 'Georgia', serif;
         }
-
-        body::before, body::after {
-            content: ''; position: fixed; top: 0; width: 300px; height: 100vh;
-            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/7672036856911881778_0');
-            background-size: contain; background-repeat: no-repeat; z-index: 1; pointer-events: none;
-        }
-        body::before { left: -50px; }
-        body::after { right: -50px; transform: scaleX(-1); }
-
-        .book { width: 450px; height: 550px; position: relative; z-index: 10; }
         .page {
-            width: 100%; height: 100%; background: white; position: absolute; top: 0; left: 0; padding: 40px; box-sizing: border-box; border-radius: 5px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            opacity: 0; transform: scale(0.8) translateY(50px) rotateX(10deg); transition: all 0.8s ease;
+            width: 350px; height: 450px; background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; text-align: center;
         }
-        .page.active { display: flex; opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); }
-        h2 { margin-bottom: 20px; font-weight: normal; color: #ffb7c5; }
-        p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;}
-        .navigation { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 20px; }
-        button { padding: 10px 25px; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; border-radius: 20px; color: #ffb7c5; font-weight: bold; font-family: 'Georgia', serif; }
+        .page.active { display: block; }
+        button { margin-top: 20px; padding: 10px 20px; background: #ffb7c5; border: none; border-radius: 20px; color: white; }
     </style>
 </head>
 <body>
-    <div class="book">
-        <div class="page active" id="page1">
-            <h2>Our Story</h2>
-            <p>Welcome to a little something special, made just for you.</p>
-        </div>
-        <div class="page" id="page2">
-            <h2>The Beginning</h2>
-            <p>I remember the first time I saw your face.</p>
-        </div>
-        <div class="page" id="page3">
-            <h2>The End</h2>
-            <p>Thank you for being my special person.</p>
-            <button onclick="window.location.href='index.html'">Back Home</button>
-        </div>
+
+    <div id="page1" class="page active">
+        <h2>Our Journey</h2>
+        <p>This is the first page of our story.</p>
+        <button onclick="nextPage()">Next</button>
     </div>
 
-    <div class="navigation">
-        <button id="prevBtn" onclick="changePage(-1)" disabled>Previous Page</button>
-        <button id="nextBtn" onclick="changePage(1)">Next Page</button>
+    <div id="page2" class="page">
+        <h2>Next Chapter</h2>
+        <p>I am so glad we get to write this story together.</p>
+        <button onclick="window.location.href='index.html'">Back Home</button>
     </div>
 
     <script>
-        let currentPage = 1;
-        const totalPages = document.querySelectorAll('.page').length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        function changePage(direction) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            currentPage += direction;
-            document.getElementById(`page${currentPage}`).classList.add('active');
-            prevBtn.disabled = (currentPage === 1);
-            nextBtn.disabled = (currentPage === totalPages);
+        function nextPage() {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
         }
     </script>
 </body>
